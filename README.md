@@ -24,7 +24,7 @@ Predict product launch success **before going to market** using AI-powered strat
 LaunchIQ.ai is an AI-powered product launch intelligence platform. Users describe
 a product they're planning to launch (name, category, industry, audience, price,
 region, features, competitors, and launch goal), and the platform generates a
-structured, consulting-style analysis of its launch potential — before the product
+structured, consulting-style analysis of its launch potential before the product
 ever goes to market.
 
 Instead of relying on guesswork, LaunchIQ.ai produces:
@@ -61,7 +61,7 @@ compared, and exported later.
 ## High-Level Architecture
 
 LaunchIQ.ai is a single-page React application. There is no custom backend
-server — the frontend talks directly to two managed services:
+server the frontend talks directly to two managed services:
 
 ```mermaid
 flowchart TD
@@ -75,14 +75,14 @@ F --> G[Supabase - Auth + PostgreSQL]
 G --> H[Dashboard / Simulation History]
 ```
 
-- **Frontend** — React 19 + TypeScript + Vite, styled with Tailwind CSS and
+- **Frontend** - React 19 + TypeScript + Vite, styled with Tailwind CSS and
   shadcn/ui, routed with React Router.
-- **AI integration** — an OpenAI-compatible chat-completions call to
+- **AI integration** - an OpenAI-compatible chat-completions call to
   [OpenRouter](https://openrouter.ai), using the `qwen/qwen3.6-27b` model, to
   turn a structured prompt into structured JSON launch intelligence.
-- **Persistence & auth** — [Supabase](https://supabase.com) (Auth + Postgres)
+- **Persistence & auth** - [Supabase](https://supabase.com) (Auth + Postgres)
   stores user accounts and simulation history.
-- **Hosting** — Vercel.
+- **Hosting** - Vercel.
 
 See [`docs/architecture.md`](docs/architecture.md) for a more detailed breakdown
 and [`docs/backend.md`](docs/backend.md) for how the "backend" services are
@@ -117,7 +117,7 @@ LaunchIQ.ai/
 │   ├── architecture.md          # Detailed system architecture
 │   ├── backend.md                # How Supabase + the AI provider are used
 │   └── product-foundation.md      # Product spec: users, inputs/outputs, scope
-└── README.md                        # You are here
+└── README.md                        
 ```
 
 ## AI Integration
@@ -144,7 +144,7 @@ without code changes. By default it targets OpenRouter's `qwen/qwen3.6-27b`.
 
 The AI response is untrusted external input, so it's validated at runtime with
 [Zod](https://zod.dev) (`LaunchInsightsSchema` in `ai/types.ts`) rather than
-trusted via TypeScript casts alone — numeric fields are range-checked and any
+trusted via TypeScript casts alone numeric fields are range-checked and any
 field the model omits or returns with the wrong type falls back to a safe
 default instead of silently entering the UI.
 
@@ -181,7 +181,7 @@ Defined in [`frontend/.env.example`](frontend/.env.example):
 | `VITE_AI_MODEL` | No | Model identifier (defaults to `qwen/qwen3.6-27b`) |
 | `VITE_AI_BASE_URL` | No | OpenAI-compatible API base URL (defaults to OpenRouter) |
 
-No API keys, secrets, or tokens are hard-coded anywhere in the codebase — all
+No API keys, secrets, or tokens are hard-coded anywhere in the codebase all
 credentials are read from environment variables at runtime.
 
 ### Available Scripts
@@ -197,6 +197,6 @@ Run from `frontend/`:
 
 ## Further Reading
 
-- [`docs/architecture.md`](docs/architecture.md) — full system architecture
-- [`docs/backend.md`](docs/backend.md) — Supabase + AI provider usage
-- [`docs/product-foundation.md`](docs/product-foundation.md) — product scope, target users, supported industries
+- [`docs/architecture.md`](docs/architecture.md) - full system architecture
+- [`docs/backend.md`](docs/backend.md) - Supabase + AI provider usage
+- [`docs/product-foundation.md`](docs/product-foundation.md) - product scope, target users, supported industries
