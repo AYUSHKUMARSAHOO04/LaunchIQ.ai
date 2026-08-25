@@ -25,12 +25,13 @@ export async function generateLaunchInsights(
 
   let text: string
   try {
-    const completion = await aiClient.chat.completions.create({
-      model: AI_MODEL,
-      temperature: AI_TEMPERATURE,
-      response_format: { type: 'json_object' },
-      messages: [{ role: 'user', content: prompt }],
-    })
+const completion = await aiClient.chat.completions.create({
+  model: AI_MODEL,
+  temperature: AI_TEMPERATURE,
+  max_tokens: 8192,
+  response_format: { type: 'json_object' },
+  messages: [{ role: 'user', content: prompt }],
+})
 
     text = completion.choices?.[0]?.message?.content || ''
     console.log('AI RAW RESPONSE:', text)
