@@ -6,6 +6,7 @@
 Predict product launch success **before going to market** using AI-powered strategic consulting intelligence.
 
 **Live Platform:** https://launch-iq-ai.vercel.app/
+
 **Product Demo:** https://drive.google.com/file/d/1_RsbBekWaEKZ1L8vRRmYzNKCSje6Rkrt/view?usp=drivesdk
 
 ![React](https://img.shields.io/badge/React-Frontend-blue)
